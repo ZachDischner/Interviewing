@@ -25,7 +25,7 @@ Here's a compiled list of questions and exercis that I can remember, mostly the 
 * *What is REST? What are the standard HTTP protocols?*
 
 # Behavorial
-`#deine TMATW "tell me about a time when"`
+`#define TMATW "tell me about a time when"`
 
 * *TMATW you failed*
     * *Tell me about another time* 
