@@ -68,6 +68,8 @@ Here's a compiled list of questions and exercis that I can remember, mostly the 
     def insert(root,ii,value):
         #complete me
     ``` 
+* Design a ticket sales service - AKA ticketmaster
+
 * **Testbed** *Design a system to test/validate firmware for GPS devices such that when a developer makes new commits, the end result is a report containing test completion marks, and performance metrics* (Come up with performance metrics, hardware/software infrastructure, networking, automation framework, etc)
 
 * **Space Shuttle** Suppose you are standing on the space shuttle outer hull in its circular orbit, and you throw a baseball directly behind the shuttle (opposite of its velocity direction). *What does the ball appear to do from your perspective*?  (make drawing)
@@ -168,6 +170,19 @@ Here's a compiled list of questions and exercis that I can remember, mostly the 
     
     assert A == [1,2,2,3,4,5,9,10]
     ```
+
+* **Word Verifier** Given a dictionary of valid words, and a mapping of numbers to a list of characters, identify which possible combination in a string of said numbers yields valid words. What is the runtime complexity?
+
+```python 
+"""mapping:
+0 : []
+1 : ['a','b','c']
+2 : ['d','e','f','g']...
+"""
+# "121" -> "ada","aea","afa" ... which ones are valid words?
+def validWord(numberstr):
+    pass
+```
 * **Build Order** *Write a program that takes as inputs a list of build dependencies: (`[(child,parent),...]`), and outputs a valid build order such that all parents of a child are built before the child program*. Omit circular dependencies. Each child has one parent, and many children can share a parent. **THIS ONE COMES UP A LOT** Learn TopoSort or just figure out a smart way to do it with basic graph construct (dictionary of lists mapping connections). 
 * **Linked List Cycle** *Return the starting node of a cycle within a linked list*
     * Can you do this in constant space?
