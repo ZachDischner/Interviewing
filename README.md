@@ -23,9 +23,17 @@ Here's a compiled list of questions and exercis that I can remember, mostly the 
 * *How do you test your software?*
 * *What is a good test?*
 * *What is REST? What are the standard HTTP protocols?*
+* *Describe the weakness of each P, I and D in PID control*
+* *What is the stack and heap in C?*
+* *What does `static` mean in the C language?*
+* *What is a weakness of a macro in C/C++ versus typical functions?*
+* *What is the integral of velocity?*
+* *If you have a single unsigned byte, and right shift 4, what is the result?*
+* *What is a pointer and what is it used for?*
+* *What is a transfer function (context of controls)?*
 
 # Behavorial
-`#deine TMATW "tell me about a time when"`
+`#define TMATW "tell me about a time when"`
 
 * *TMATW you failed*
     * *Tell me about another time* 
@@ -160,8 +168,35 @@ Here's a compiled list of questions and exercis that I can remember, mostly the 
     
     assert A == [1,2,2,3,4,5,9,10]
     ```
-* **Build Order** *Write a program that takes as inputs a list of build dependencies: (`[(child,parent),...]`), and outputs a valid build order such that all parents of a child are built before the child program*. Omit circular dependencies. Each child has one parent, and many children can share a parent. 
+* **Build Order** *Write a program that takes as inputs a list of build dependencies: (`[(child,parent),...]`), and outputs a valid build order such that all parents of a child are built before the child program*. Omit circular dependencies. Each child has one parent, and many children can share a parent. **THIS ONE COMES UP A LOT** Learn TopoSort or just figure out a smart way to do it with basic graph construct (dictionary of lists mapping connections). 
+* **Linked List Cycle** *Return the starting node of a cycle within a linked list*
+    * Can you do this in constant space?
+        * Hint: Slow and Fast pointer. Find where they meet. Then find the size (k) of the cycle (hold one still and count movements of the other). Then start two pointers from beginning of LL, one at the start, the one at (k). March until they meet. 
 
+    ```
+                 ______
+                 |     |
+                 \/    |
+        1 -> 2 -> 3 -> 4
+
+    Return the node corresponding to node 3. 
+    ```
+* **Duplicate Linked List Removal** Given a sorted singly linked list, remove all duplicate elements
+    
+    ```python
+    """
+    Given 1->1->2, return 1->2.
+    Given 1->1->2->3->3, return 1->2->3
+    """
+    #(trivial)
+    def deleteDuplicates(A):
+        head = A
+        while A:
+            while A.next and A.val == A.next.val:
+                A.next = A.next.next
+            A = A.next
+        return head
+    ```
 * **Dict Compare** *Write a function that takes two dictionaries and returns `True` if the dictionaries are equivalent and `False` if they are not* (up to you to define what *equal* diuctionaries mean...)
     
     ```python
