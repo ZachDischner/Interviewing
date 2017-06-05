@@ -170,6 +170,61 @@ Here's a compiled list of questions and exercis that I can remember, mostly the 
     
     assert A == [1,2,2,3,4,5,9,10]
     ```
+* **Array Merge** Given two *sorted* arrays `A` and `B`, each has `N` elements in it. `A` is of size `2*N`, with the second half filled with `None` values. *Write a function to merge `B` into `A` in place, keeping results sorted*. You may **not** use other data structures (lists, sets, dicts) for temporary storage, but can use temporary variables if you wish.
+    
+    ```python
+    A = [1,2,5,9,None,None,None,None]
+    B = [2,3,4,10]
+    
+    def merge_arrays(A,B):
+        ## complete Me
+        return
+    
+    assert A == [1,2,2,3,4,5,9,10]
+    ```
+* **Is Subset?** Given two integer arrays A and B of any size. *Write code for a function FindExactMatch() to determine if B is contained (exact pattern match) in A*.  An exact pattern match is all the same value in the same sequence without any other values in between; literally a one for one match) Return the array index where the match is found or -1 if not found. 
+    
+    ```
+    # Example1    A: 0,1,2,4,1,2,3    B: 4,1     Returns  3  (index of where match begins, assuming zero based indices) 
+    # Example2    A: 0,1,2,4,3,1,3    B: 4,1     Returns -1  (no match found) 
+    
+    def FindExactMatch(A,B):
+        pass # fill me in
+    ```
+    * *What if we wanted the match to be able to circle back from the end to the beginning of the array?*
+
+* **Build Order** *Write a program that takes as inputs a list of build dependencies: (`[(child,parent),...]`), and outputs a valid build order such that all parents of a child are built before the child program*. Omit circular dependencies. Each child has one parent, and many children can share a parent. 
+
+* **Longest chain** Find the longest substring in a string with only 2 varying characters
+    
+    ```
+    # Example:   aaabbbbcccdddddd ==> cccddddd
+    def longest_chain(string):
+        pass
+    ```
+* **Permutation Indices** (Adapted from FB interview, my buddy saw this IRL. Neat problem) Background, you have an `N-Dimensional` matrix. Given a list of matrix dimensions, *write a function to return labels for every possible cell within the matrix* like `x_m_n_o_p`:
+
+    ```python
+    assert nd_lables([3]) == ["x_0", "x_1", "x_2"]
+    assert nd_lables([2,2,2]) == ['x_0_0_0', 'x_0_0_1', 'x_0_1_0','x_0_1_1', 'x_1_0_0', 'x_1_0_1', 'x_1_1_0', 'x_1_1_1']
+    def nd_labels(dims):
+        pass
+    
+    
+    ## This was too fun not to include. 
+    def nd_labels(dims:list)->list:
+    labels = ["x"]
+    ## Add each dimension's range to the labels list
+    for dim in dims:
+        ## Update each existing (growing) label with this dimension's index range
+        for ix in range(len(labels)):
+            ## Choose the first one to modify
+            base = labels.pop(0)
+            ## Modify label by adding each new dimension's range to it
+            for dim_ix in range(dim):
+                labels.append(f"{base}_{dim_ix}")
+    return labels
+    ```
 
 * **Word Verifier** Given a dictionary of valid words, and a mapping of numbers to a list of characters, identify which possible combination in a string of said numbers yields valid words. What is the runtime complexity?
 
