@@ -44,6 +44,7 @@ Here's a compiled list of questions and exercis that I can remember, mostly the 
 * *Do you like working in teams or solo better?*
 * *Describe your favorite manager, least favorite*
 * *How do you feel?*
+* *Describe when you had to deal with ambiguity*
 * *What was the last thing you stayed up late working on?*
 * *Tell me about your side projects*
 
@@ -70,13 +71,15 @@ Here's a compiled list of questions and exercis that I can remember, mostly the 
     ``` 
 * Design a ticket sales service - AKA ticketmaster
 
-* **Word Transform** You are given a word, and want to transform it into a word (of equal length). You may only change one letter at a time, and each newly formed word must be a valid word in a provided dictionary `dict['word']= True, dict['zord'] = None`. **Determine the sequence of the fewest number of transformations required to transform word1 into word2** 
+* **Word Transform** You are given a word, and want to transform it into a word (of equal length). You may only change one letter at a time, and each newly formed word must be a valid word in a provided dictionary `dict['word']= True, dict['zord'] = None`. *Determine the sequence of the fewest number of transformations required to transform word1 into word2*
     
     ```Ex:
     Bat --> Dog
     Bat -> Bag -> Bog -> Dog
     def wordTransform(source,dest):
         pass
+    
+    # Hint : Sounds like a shortest path problem...
     ```
 
 * **Testbed** *Design a system to test/validate firmware for GPS devices such that when a developer makes new commits, the end result is a report containing test completion marks, and performance metrics* (Come up with performance metrics, hardware/software infrastructure, networking, automation framework, etc)
@@ -99,7 +102,9 @@ Here's a compiled list of questions and exercis that I can remember, mostly the 
     * *As a data scientist asked to help out, describe what you would do to find where and if their delivery problem lies?* (~1week assignment)
     * Now they want to spend some money on modernizing their service and system. *Whiteboard the architecture for the system you would build them* (mobile/desktop, data model/normalization ideas, UI, hardware in the shop, be realistic and prudent with what you'd specify)
 
-* **Scrabble** *How would you build a scrabble app?*
+* **Scrabble** *How would you build a scrabble app?* (systems design)
+
+* **Talent** *Design a tool to collect and report votes for an episode of ____ got talent. How does this scale to hundreds of millions of users?* (systems design)
 
 * **Messy Data** Drawn example of messy, noisy time-series data with many missing pieces, and a large step indicating a state change. *Discuss how you would handle analyzing data like this and deal with missing data points?* The state change means that data before/after the change should be treated and analyzed differently. *How would you detect the state change in this dataset? How would this effect the pipeline used to analyze these datasets?*
   
@@ -178,19 +183,10 @@ Here's a compiled list of questions and exercis that I can remember, mostly the 
         return
     
     assert A == [1,2,2,3,4,5,9,10]
+    
+    # Hint: Merge from the back to the front to do this in place, without allocating additional memory
     ```
-* **Array Merge** Given two *sorted* arrays `A` and `B`, each has `N` elements in it. `A` is of size `2*N`, with the second half filled with `None` values. *Write a function to merge `B` into `A` in place, keeping results sorted*. You may **not** use other data structures (lists, sets, dicts) for temporary storage, but can use temporary variables if you wish.
     
-    ```python
-    A = [1,2,5,9,None,None,None,None]
-    B = [2,3,4,10]
-    
-    def merge_arrays(A,B):
-        ## complete Me
-        return
-    
-    assert A == [1,2,2,3,4,5,9,10]
-    ```
 * **Is Subset?** Given two integer arrays A and B of any size. *Write code for a function FindExactMatch() to determine if B is contained (exact pattern match) in A*.  An exact pattern match is all the same value in the same sequence without any other values in between; literally a one for one match) Return the array index where the match is found or -1 if not found. 
     
     ```
@@ -202,7 +198,31 @@ Here's a compiled list of questions and exercis that I can remember, mostly the 
     ```
     * *What if we wanted the match to be able to circle back from the end to the beginning of the array?*
 
-* **Build Order** *Write a program that takes as inputs a list of build dependencies: (`[(child,parent),...]`), and outputs a valid build order such that all parents of a child are built before the child program*. Omit circular dependencies. Each child has one parent, and many children can share a parent. 
+* **Build Order** *Write a program that takes as inputs a list of build dependencies: (`[(child,parent),...]`), and outputs a valid build order such that all parents of a child are built before the child program*. Omit circular dependencies. Each child has one parent, and many children can share a parent. **Ive seen this asked more than any other problem!**
+    * *How do you deal with circular dependancies?*
+
+    ```python
+    """"""
+     Build order is downwards
+     A depends on B and C, B depends on E, etc
+        A       X       Foo
+       /|       |\
+      B C       Y Z
+      | |
+      | D
+      \ |\
+        E G
+    """
+    ## Build only once
+    dependencies = [("A","C"),("A","B"),("B","E"),("C","D"),("D","E"),("D","G"),("X","Y"),("X","Z"),("Foo",None)]
+    
+    def build(dependencies):
+        pass
+    
+    # Valid: ['E', 'G', 'D', 'C', 'B', 'A', 'Y', 'Z', 'X', 'Foo'] (not topological sort)
+    
+    # Hint: build helper classes if you want. Can implement topological sort or just make sure that whatever is built has no unbuilt parents. 
+    ``` 
 
 * **Longest chain** Find the longest substring in a string with only 2 varying characters
     
